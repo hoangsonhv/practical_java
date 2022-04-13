@@ -1,4 +1,4 @@
-<%@ page import="com.example.demo_web.entity.Product" %><%
+<%@ page import="com.example.practical.entity.Product" %><%
     Product obj = (Product) request.getAttribute("obj");
 %>
 <!DOCTYPE html>
@@ -10,29 +10,29 @@
 <body>
     <div class="container col-md-10" style="margin-top: 50px">
         <form style="padding: 20px" class="w3-container w3-card-4" action="/products/edit" method="post">
-                <h2 class="w3-text-blue">Edit Product</h2>
-                <p>
-                    <label class="w3-text-blue"><b>Name</b></label>
-                    <input type="hidden" name="id" value="<%=obj.getId()%>">
-                    <input class="w3-input w3-border" name="name" type="text" value="<%=obj.getName()%>">
-                </p>
-                <p>
-                    <label class="w3-text-blue"><b>Thumbnail</b></label>
-                    <input class="w3-input w3-border" name="thumbnail" type="text" value="<%=obj.getThumbnail()%>">
-                </p>
-                <p>
-                    <label class="w3-text-blue"><b>Price</b></label>
-                    <input class="w3-input w3-border" name="price" type="number" value="<%=obj.getPrice()%>">
-                </p>
-                <p>
-                    <label class="w3-text-blue"><b>Status</b></label>
-                    <input class="w3-input w3-border" name="status" type="number" value="<%=obj.getStatus()%>">
-                </p>
-                <p>
-                    <button class="w3-btn w3-blue">Update</button>
-                    <input type="reset" class="w3-btn w3-teal" value="Reset"/>
-                </p>
-            </form>
+            <h2 class="w3-text-blue">Edit Product</h2>
+            <p>
+                <label class="w3-text-blue"><b>Name</b></label>
+                <input type="hidden" name="id" value="<%=obj.getId()%>">
+                <input class="w3-input w3-border" name="name" type="text" value="<%=obj.getName()%>">
+            </p>
+            <p>
+                <label class="w3-text-blue"><b>Price</b></label>
+                <input class="w3-input w3-border" name="price" type="number" value="<%=obj.getPrice()%>">
+            </p>
+            <p>
+                <label class="w3-text-blue"><b>Status</b></label>
+                <input class="w3-input w3-border" name="amount" type="number" value="<%=obj.getAmount()%>">
+            </p>
+            <p>
+                <label class="w3-text-blue"><b>Details</b></label>
+                <input class="w3-input w3-border" name="details" type="text" value="<%=obj.getDetails()%>">
+            </p>
+            <p>
+                <button class="w3-btn w3-blue">Update</button>
+                <input type="reset" class="w3-btn w3-teal" value="Reset"/>
+            </p>
+        </form>
     </div>
 </body>
 </html>

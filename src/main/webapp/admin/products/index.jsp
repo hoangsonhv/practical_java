@@ -1,11 +1,9 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.demo_web.entity.Student" %>
-<%@ page import="com.example.demo_web.entity.Product" %>
+<%@ page import="com.example.practical.entity.Product" %>
 <%@ page import="java.util.HashSet" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<Product> list = (List<Product>)request.getAttribute("listObject");
-    HashSet<Product> recentView = (HashSet<Product>) session.getAttribute("recentReviewProduct");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,8 +22,9 @@
         <tr class="w3-light-grey">
             <th>Id</th>
             <th>Name</th>
-            <th>Thumbnail</th>
             <th>Price</th>
+            <th>Amount</th>
+            <th>Details</th>
             <th>Option</th>
         </tr>
         </thead>
@@ -37,10 +36,10 @@
             <tr>
                 <td><%=obj.getId()%></td>
                 <td><%=obj.getName()%></td>
-                <td><img src="<%=obj.getThumbnail()%>" width="150px"></td>
                 <td><%=obj.getPrice()%> vnd</td>
+                <td><%=obj.getAmount()%></td>
+                <td><%=obj.getDetails()%></td>
                 <td>
-                    <a href="/shopping-cart/add?productId=<%=obj.getId()%>&quantity=1">Add To Cart</a>&nbsp;&nbsp;|&nbsp;
                     <a href="/products/detail?id=<%=obj.getId()%>">Detail</a>&nbsp;&nbsp;|&nbsp;
                     <a href="/products/edit?id=<%=obj.getId()%>">Edit</a>&nbsp;&nbsp;|&nbsp;
                     <a href="/products/delete?id=<%=obj.getId()%>" class="btn-delete">Delete</a>
@@ -51,22 +50,6 @@
             %>
         </tbody>
     </table>
-    <%if (recentView != null && recentView.size() > 0){%>
-    <ul class="w3-ul w3-card-4">
-       <%
-           for (Product product: recentView) {%>
-                <li class="w3-bar">
-                    <span onclick="this.parentElement.style.display='none'" class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
-                    <img src="<%=product.getThumbnail()%>" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
-                    <div class="w3-bar-item">
-                        <span class="w3-large"><%=product.getName()%></span><br>
-                        <span><%=product.getPrice()%></span>
-                    </div>
-                </li>
-        <%}%>
-    </ul>
-    <%}%>
-</div>
 <script>
     document.addEventListener('DOMContentLoaded', function (){
         let listDeleteButton = document.querySelectorAll('.btn-delete');

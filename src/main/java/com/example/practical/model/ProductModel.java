@@ -77,16 +77,12 @@ public class ProductModel {
             Connection connection = ConnectionHelper.getConnection();
             PreparedStatement statement = connection.prepareStatement(SQLConfig.DATABASE_PRODUCT_UPDATE);
             statement.setString(1, updateProduct.getName());
-            statement.setString(2, updateProduct.getThumbnail());
-            statement.setDouble(3, updateProduct.getPrice());
-            statement.setInt(4, updateProduct.getStatus());
+            statement.setDouble(2, updateProduct.getPrice());
+            statement.setInt(3, updateProduct.getAmount());
+            statement.setString(4, updateProduct.getDetails());
             statement.setInt(5, id);
             statement.execute();
             return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,10 +98,6 @@ public class ProductModel {
             statement.setInt(1, id);
             statement.execute();
             return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

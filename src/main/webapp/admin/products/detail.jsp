@@ -1,4 +1,4 @@
-<%@ page import="com.example.demo_web.entity.Product" %><%
+<%@ page import="com.example.practical.entity.Product" %><%
     Product obj = (Product) request.getAttribute("obj");
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,11 +11,6 @@
 <body>
     <div class="container col-md-10" style="margin-top: 50px">
         <h2 class="w3-text-blue" style="text-align: center; margin-bottom: 20px">Product Detail</h2>
-        <div class="col-md-6" style="float: left">
-            <p>
-                <img src="<%=obj.getThumbnail()%>" width="100%">
-            </p>
-        </div>
         <div class="col-md-6" style="float: right">
             <p>
                 <label class="w3-text-blue"><b>Name :</b></label>
@@ -27,8 +22,12 @@
                 <span><%=obj.getPrice()%>(VND)</span>
             </p>
             <p>
-                <label class="w3-text-blue"><b>Status :</b></label>
-                <span><%=obj.getStatus()%></span>
+                <label class="w3-text-blue"><b>Amount :</b></label>
+                <span><%=obj.getAmount()%></span>
+            </p>
+            <p>
+                <label class="w3-text-blue"><b>Details :</b></label>
+                <span><%=obj.getDetails()%></span>
             </p>
         </div>
     </div>

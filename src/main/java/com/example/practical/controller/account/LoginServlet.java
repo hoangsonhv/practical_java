@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         if (result){
             HttpSession session = req.getSession();
             session.setAttribute("currenUser", user);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/products/list");
         }else {
             resp.getWriter().println("Account is not valid!");
             resp.sendRedirect("/login");

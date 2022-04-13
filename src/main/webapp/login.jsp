@@ -22,6 +22,9 @@
                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
+            <button type="button" class="btn btn-default">
+                <a href="/register">Create new account</a>
+            </button>
         </form>
     </div>
 

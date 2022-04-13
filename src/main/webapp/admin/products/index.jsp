@@ -7,7 +7,7 @@
 %>
 <!DOCTYPE html>
 <html>
-    <title>List Student</title>
+    <title>List Product</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

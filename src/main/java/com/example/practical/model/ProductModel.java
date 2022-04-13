@@ -21,7 +21,7 @@ public class ProductModel {
             preparedStatement.setString(1, obj.getName());
             preparedStatement.setDouble(2, obj.getPrice());
             preparedStatement.setInt(3, obj.getAmount());
-            preparedStatement.setString(3, obj.getDetails());
+            preparedStatement.setString(4, obj.getDetails());
             preparedStatement.execute();
             return true;
         } catch (Exception e) {

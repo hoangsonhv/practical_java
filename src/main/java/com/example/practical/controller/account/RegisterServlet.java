@@ -28,7 +28,7 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         boolean result = accountModel.save(user);
         if(result){
-            resp.getWriter().println("Register success");
+            resp.sendRedirect("/products/list");
         }else {
             resp.getWriter().println("Errors!");
         }

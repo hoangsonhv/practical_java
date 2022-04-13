@@ -1,6 +1,6 @@
 package com.example.practical.controller.product;
 
-import com.example.practical.entity.Products;
+import com.example.practical.entity.Product;
 import com.example.practical.model.ProductModel;
 
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ public class EditProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        Products obj = model.findById(id);
+        Product obj = model.findById(id);
         if (obj == null){
             resp.setStatus(404);
             resp.getWriter().println("Not found");
@@ -29,19 +29,19 @@ public class EditProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        Products obj = model.findById(id);
+        Product obj = model.findById(id);
         if (obj == null){
             resp.setStatus(404);
             resp.getWriter().println("Not found");
         }else {
             String name = req.getParameter("name");
-            String thumbnail = req.getParameter("thumbnail");
             Double price = Double.parseDouble(req.getParameter("price"));
-            int status = Integer.parseInt(req.getParameter("status"));
+            int amount = Integer.parseInt(req.getParameter("amount"));
+            String details = req.getParameter("details");
             obj.setName(name);
-            obj.setThumbnail(thumbnail);
             obj.setPrice(price);
-            obj.setStatus(status);
+            obj.setAmount(amount);
+            obj.setDetails(details);
             model.update(id, obj);
             resp.sendRedirect("/products/list");
         }

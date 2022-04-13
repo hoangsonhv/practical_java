@@ -13,6 +13,15 @@
         <element id="directory" name="classes">
           <element id="module-output" name="practical" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.reflections:reflections:0.10.2" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.28.0-GA" />
+          <element id="library" level="project" name="Maven: com.google.code.findbugs:jsr305:3.0.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.32" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.12.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.28" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/practical-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />

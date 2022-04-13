@@ -1,7 +1,7 @@
 package com.example.practical.controller.account;
 
 import com.example.practical.entity.User;
-import com.example.practical.model.AccountModel;
+import com.example.practical.model.UserModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +12,7 @@ import java.util.Calendar;
 
 public class RegisterServlet extends HttpServlet {
 
-    private AccountModel accountModel = new AccountModel();
+    private UserModel accountModel = new UserModel();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/register.jsp").forward(req,resp);
@@ -21,21 +21,12 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
-        String fullname = req.getParameter("fullname");
         String password = req.getParameter("password");
-        String confirmPassword = req.getParameter("confirmPassword");
 
-        User account = new User();
-        account.setUsername(username);
-        account.setFullName(fullname);
-        String salt = PasswordHandler.generateSalt();
-        account.setSalt(salt);
-
-        String passwordHash = PasswordHandler.getMd5(password, salt);
-        account.setPasswordHash(passwordHash);
-        account.setStatus(1);
-        account.setCreateAt(Calendar.getInstance().getTime().toString());
-        boolean result = accountModel.save(account);
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        boolean result = accountModel.save(user);
         if(result){
             resp.getWriter().println("Register success");
         }else {

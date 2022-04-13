@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 @Table(name = "tbProducts")
-public class Products {
+public class Product {
     @Column(name = "id", type = "INT PRIMARY KEY AUTO_INCREMENT")
     private int id;
     @Column(name = "name", type = "VARCHAR(255)")
@@ -19,17 +19,19 @@ public class Products {
     @Column(name = "details", type = "VARCHAR(255)")
     private String details;
 
-    public Products() {
+    public Product() {
     }
 
-    public Products(String name, Double price, int amount, String details) {
+    public Product(String name, Double price, int amount, String details) {
         this.name = name;
         this.price = price;
         this.amount = amount;
         this.details = details;
     }
 
-    public Products(int id, String name, Double price, int amount, String details) {
+
+
+    public Product(int id, String name, Double price, int amount, String details) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -117,7 +119,7 @@ public class Products {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Products product = (Products) o;
+        Product product = (Product) o;
         return id == product.id;
     }
 

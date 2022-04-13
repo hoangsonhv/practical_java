@@ -1,8 +1,8 @@
 package com.example.practical.model;
 
-import com.example.demo_web.entity.Product;
-import com.example.demo_web.util.ConnectionHelper;
-import com.example.demo_web.util.SQLConfig;
+import com.example.practical.entity.Product;
+import com.example.practical.util.ConnectionHelper;
+import com.example.practical.util.SQLConfig;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,14 +19,11 @@ public class ProductModel {
             Connection connection = ConnectionHelper.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SQLConfig.DATABASE_PRODUCT_INSERT);
             preparedStatement.setString(1, obj.getName());
-            preparedStatement.setString(2, obj.getThumbnail());
-            preparedStatement.setDouble(3, obj.getPrice());
+            preparedStatement.setDouble(2, obj.getPrice());
+            preparedStatement.setInt(3, obj.getAmount());
+            preparedStatement.setString(3, obj.getDetails());
             preparedStatement.execute();
             return true;
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,10 +40,10 @@ public class ProductModel {
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
-                String thumbnail = resultSet.getString("thumbnail");
-                Double price = resultSet.getDouble("price");
-                int status = resultSet.getInt("status");
-                Product obj = new Product(id,name,thumbnail,price,status);
+                double price = resultSet.getDouble("price");
+                int amount = resultSet.getInt("amount");
+                String details = resultSet.getString("details");
+                Product obj = new Product(id,name,price,amount, details);
                 productList.add(obj);
             }
         }catch (Exception e){
@@ -64,10 +61,10 @@ public class ProductModel {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()){
                 String name = resultSet.getString("name");
-                String thumbnail = resultSet.getString("thumbnail");
-                Double price = resultSet.getDouble("price");
-                int status = resultSet.getInt("status");
-                obj = new Product(id,name,thumbnail,price,status);
+                double price = resultSet.getDouble("price");
+                int amount = resultSet.getInt("amount");
+                String details = resultSet.getString("details");
+                obj = new Product(id,name,price,amount, details);
             }
         }catch (Exception e){
             System.out.println(e.getMessage());

@@ -1,6 +1,6 @@
 package com.example.practical.controller.product;
 
-import com.example.practical.entity.Products;
+import com.example.practical.entity.Product;
 import com.example.practical.model.ProductModel;
 
 import javax.servlet.ServletException;
@@ -18,9 +18,10 @@ public class CreateProductServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
-        String thumbnail = req.getParameter("thumbnail");
         Double price = Double.parseDouble(req.getParameter("price"));
-        Products obj = new Products(name, thumbnail, price);
+        int amount = Integer.parseInt(req.getParameter("amount"));
+        String details = req.getParameter("details");
+        Product obj = new Product(name, price, amount, details);
         if (!obj.isValid()){
             req.setAttribute("errors", obj.getErrors());
             req.getRequestDispatcher("/admin/products/form.jsp").forward(req, resp);

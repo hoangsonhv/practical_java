@@ -1,6 +1,6 @@
 package com.example.practical.model;
 
-import com.example.practical.entity.Account;
+import com.example.practical.entity.User;
 import com.example.practical.entity.User;
 import com.example.practical.util.ConnectionHelper;
 import com.example.practical.util.SQLConfig;
@@ -8,12 +8,8 @@ import com.example.practical.util.SQLConfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
-public class AccountModel {
+public class UserModel {
 
     public boolean save(User user) {
         try {

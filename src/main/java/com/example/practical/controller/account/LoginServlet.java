@@ -1,7 +1,8 @@
 package com.example.practical.controller.account;
 
 import com.example.practical.entity.User;
-import com.example.practical.model.AccountModel;
+import com.example.practical.model.UserModel;
+import com.example.practical.util.PasswordHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 
 public class LoginServlet extends HttpServlet {
 
-    private AccountModel accountModel = new AccountModel();
+    private UserModel accountModel = new UserModel();
 
     private static final int MAX_COUNT = 5;
 
@@ -26,35 +27,19 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
-        User account = accountModel.findAccountByUsername(username);
-        if (account == null){
+        User user = accountModel.findAccountByUsername(username);
+        if (user == null){
 //            resp.getWriter().println("Invalid Information");
             resp.sendRedirect("/login");
             return;
         }
-        if (account.getStatus() == 2){
-            if (LocalDateTime.now().compareTo(account.getLockTime()) > 0){
-                account.setStatus(1);
-                account.setFailureCount(0);
-                accountModel.updateLock(account.getUsername(), account);
-            }else {
-                resp.getWriter().println("Errors!");
-                return;
-            }
-        }
-        boolean result = PasswordHandler.checkPassword(password, account.getPasswordHash(), account.getSalt());
+        boolean result = PasswordHandler.checkPassword(password, user.getPassword());
         if (result){
             HttpSession session = req.getSession();
-            session.setAttribute("currenAccount", account);
+            session.setAttribute("currenUser", user);
             resp.sendRedirect("/");
         }else {
-            account.setFailureCount(account.getFailureCount() + 1);
-            if (account.getFailureCount() == MAX_COUNT){
-                account.setStatus(2);
-                account.setLockTime(LocalDateTime.now().plusMinutes(5));
-                accountModel.updateLock(account.getUsername(), account);
-            }
-            resp.getWriter().println("Account is lock 5 minute!");
+            resp.getWriter().println("Account is not valid!");
             resp.sendRedirect("/login");
         }
     }

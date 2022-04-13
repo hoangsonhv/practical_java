@@ -43,20 +43,24 @@
                 <%}%>
             </p>
             <p>
-                <label class="w3-text-blue"><b>Thumbnail</b></label>
-                <input class="w3-input w3-border" name="thumbnail" type="hidden">
-                <img src="" class="w3-ground image-preview hide" id="image-preview">
-                <button id="upload_widget" type="button" class="w3-button w3-black">Upload files</button>
-
-                <%if (errors.containsKey("thumbnail")){%>
-                    <span class="w3-text-red">* <%=errors.get("thumbnail")%></span>
-                <%}%>
-            </p>
-            <p>
                 <label class="w3-text-blue"><b>Price</b></label>
                 <input class="w3-input w3-border" name="price" type="number" value="0">
                 <%if (errors.containsKey("price")){%>
                     <span class="w3-text-red">* <%=errors.get("price")%></span>
+                <%}%>
+            </p>
+            <p>
+                <label class="w3-text-blue"><b>Amount</b></label>
+                <input class="w3-input w3-border" name="amount" type="number">
+                <%if (errors.containsKey("amount")){%>
+                <span class="w3-text-red">* <%=errors.get("amount")%></span>
+                <%}%>
+            </p>
+            <p>
+                <label class="w3-text-blue"><b>Details</b></label>
+                <input class="w3-input w3-border" name="details" type="text">
+                <%if (errors.containsKey("details")){%>
+                <span class="w3-text-red">* <%=errors.get("details")%></span>
                 <%}%>
             </p>
             <p>
@@ -65,22 +69,5 @@
             </p>
         </form>
     </div>
-<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-<script type="text/javascript">
-    var myWidget = cloudinary.createUploadWidget({
-        cloudName: 'tnhh-1-th-nh-vi-n-ok',
-        uploadPreset: 'mnja4jgg'}, (error, result) => {
-        if (!error && result && result.event === "success") {
-            console.log('Done! Here is the image info: ', result.info.url);
-            var img = document.getElementById("image-preview");
-            img.classList.remove("hide");
-            img.src = result.info.url;
-            document.forms['create-form']['thumbnail'].value = result.info.url;
-        }
-    })
-    document.getElementById("upload_widget").addEventListener("click", function(){
-        myWidget.open();
-    }, false);
-</script>
 </body>
 </html>

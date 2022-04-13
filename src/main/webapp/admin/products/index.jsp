@@ -21,57 +21,58 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <body>
 
-<div class="container col-md-10">
-    <div class="container">
-        <%if (isLogin){%>
-        <div class="row">
-            <div class="col-md-6" style="text-align: center">
-                <h3><%=currenUsername%></h3>
+    <div class="container col-md-10">
+        <div class="container">
+            <%if (isLogin){%>
+            <div class="row">
+                <div class="col-md-6" style="text-align: center">
+                    <h3><%=currenUsername%></h3>
+                </div>
+                <div class="col-md-6"  style="text-align: center">
+                    <a href="/logout">Đăng xuất</a>
+                </div>
             </div>
-            <div class="col-md-6"  style="text-align: center">
-                <a href="/logout">Đăng xuất</a>
-            </div>
+            <%}else {%>
+                <p><a href="/login">Đăng nhập.</a>. <a href="/register"> Chưa có tk thì đăng ký.</a></p>
+            <%}%>
+            <h3></h3>
         </div>
-        <%}else {%>
-            <p><a href="/login">Đăng nhập.</a>. <a href="/register"> Chưa có tk thì đăng ký.</a></p>
-        <%}%>
-        <h3></h3>
-    </div>
-    <h2 style="text-align: center">List Product</h2>
-    <a href="/products/create" class="btn btn-primary" style="margin-bottom: 10px">Create new Product</a>
-    <table class="w3-table-all">
-        <thead>
-        <tr class="w3-light-grey">
-            <th>Id</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th>Details</th>
-            <th>Option</th>
-        </tr>
-        </thead>
-        <tbody>
-            <%
-                for (int i = 0; i < list.size(); i++) {
-                    Product obj = list.get(i);
-            %>
-            <tr>
-                <td><%=obj.getId()%></td>
-                <td><%=obj.getName()%></td>
-                <td><%=obj.getPrice()%> vnd</td>
-                <td><%=obj.getAmount()%></td>
-                <td><%=obj.getDetails()%></td>
-                <td>
-                    <a href="/products/detail?id=<%=obj.getId()%>">Detail</a>&nbsp;&nbsp;|&nbsp;
-                    <a href="/products/edit?id=<%=obj.getId()%>">Edit</a>&nbsp;&nbsp;|&nbsp;
-                    <a href="/products/delete?id=<%=obj.getId()%>" class="btn-delete">Delete</a>
-                </td>
+        <h2 style="text-align: center">List Product</h2>
+        <a href="/products/create" class="btn btn-primary" style="margin-bottom: 10px">Create new Product</a>
+        <table class="w3-table-all">
+            <thead>
+            <tr class="w3-light-grey">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Details</th>
+                <th>Option</th>
             </tr>
-            <%
-                }
-            %>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <%
+                    for (int i = 0; i < list.size(); i++) {
+                        Product obj = list.get(i);
+                %>
+                <tr>
+                    <td><%=obj.getId()%></td>
+                    <td><%=obj.getName()%></td>
+                    <td><%=obj.getPrice()%> vnd</td>
+                    <td><%=obj.getAmount()%></td>
+                    <td><%=obj.getDetails()%></td>
+                    <td>
+                        <a href="/products/detail?id=<%=obj.getId()%>">Detail</a>&nbsp;&nbsp;|&nbsp;
+                        <a href="/products/edit?id=<%=obj.getId()%>">Edit</a>&nbsp;&nbsp;|&nbsp;
+                        <a href="/products/delete?id=<%=obj.getId()%>" class="btn-delete">Delete</a>
+                    </td>
+                </tr>
+                <%
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
 <script>
     document.addEventListener('DOMContentLoaded', function (){
         let listDeleteButton = document.querySelectorAll('.btn-delete');

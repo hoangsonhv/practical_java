@@ -6,7 +6,7 @@ import com.example.practical.annotation.Table;
 import java.util.HashMap;
 import java.util.Objects;
 
-@Table(name = "tbProducts")
+@Table(name = "products")
 public class Product {
     @Column(name = "id", type = "INT PRIMARY KEY AUTO_INCREMENT")
     private int id;

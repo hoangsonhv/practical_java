@@ -3,7 +3,7 @@ package com.example.practical.entity;
 import com.example.practical.annotation.Column;
 import com.example.practical.annotation.Table;
 
-@Table(name = "tbUser")
+@Table(name = "user")
 public class User {
     @Column(name = "id", type = "INT PRIMARY KEY AUTO_INCREMENT")
     private String username;

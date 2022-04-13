@@ -1,4 +1,3 @@
-<%@ page import="com.example.demo_web.entity.Account" %>
 <%@ page import="com.example.practical.entity.User" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%

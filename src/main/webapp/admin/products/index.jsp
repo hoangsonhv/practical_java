@@ -1,9 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.practical.entity.Product" %>
 <%@ page import="java.util.HashSet" %>
+<%@ page import="com.example.practical.entity.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<Product> list = (List<Product>)request.getAttribute("listObject");
+    User account = (User) session.getAttribute("currenUser");
+    boolean isLogin = false;
+    if (account != null){
+        isLogin = true;
+    }
+    String currenUsername = account == null ? "Plesase to login!" : account.getUsername();
 %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +22,21 @@
 <body>
 
 <div class="container col-md-10">
+    <div class="container">
+        <%if (isLogin){%>
+        <div class="row">
+            <div class="col-md-6" style="text-align: center">
+                <h3><%=currenUsername%></h3>
+            </div>
+            <div class="col-md-6"  style="text-align: center">
+                <a href="/logout">Đăng xuất</a>
+            </div>
+        </div>
+        <%}else {%>
+            <p><a href="/login">Đăng nhập.</a>. <a href="/register"> Chưa có tk thì đăng ký.</a></p>
+        <%}%>
+        <h3></h3>
+    </div>
     <h2 style="text-align: center">List Product</h2>
     <a href="/products/create" class="btn btn-primary" style="margin-bottom: 10px">Create new Product</a>
     <table class="w3-table-all">
